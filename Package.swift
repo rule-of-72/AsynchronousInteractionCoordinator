@@ -9,15 +9,15 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "Interaction Queue",
+            name: "Interaction-Queue",
             targets: ["InteractionQueue"]
         ),
         .library(
-            name: "Async Operations",
+            name: "Async-Operations",
             targets: ["AsyncOperation"]
         ),
         .library(
-            name: "Concurrent KVO",
+            name: "Concurrent-KVO",
             targets: ["ConcurrentKVO"]
         ),
     ],
