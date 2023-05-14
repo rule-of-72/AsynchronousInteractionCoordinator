@@ -15,13 +15,16 @@ public class InteractionQueue {
     public func onViewDidAppear() {
         viewDoesAppear = true
         if asyncUIQueue.isSuspended {
-            OperationQueue.main.addOperation(withDelay: .seconds(0.5)) { [weak self] in
-                guard let self = self else { return }
+            DispatchQueue.main.asyncAfter(
+                deadline: DispatchTime.now() + Timing.delayToResumeQueue,
+                execute: DispatchWorkItem(block: { [weak self] in
+                    guard let self = self else { return }
 
-                if self.viewDoesAppear {
-                    self.asyncUIQueue.isSuspended = false
-                }
-            }
+                    if self.viewDoesAppear {
+                        self.asyncUIQueue.isSuspended = false
+                    }
+                } )
+            )
         }
     }
 

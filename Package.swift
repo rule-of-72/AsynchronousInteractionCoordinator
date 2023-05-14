@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "Asynchronous Interaction Coordinator",
-    platforms: [.iOS(.v15), .macCatalyst(.v15), .macOS(.v11)],
+    platforms: [.iOS(.v12), .macCatalyst(.v15), .macOS(.v11)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -33,6 +33,10 @@ let package = Package(
             dependencies: [
                 .product(name: "ConcurrentKVO", package: "ConcurrentKVO"),
             ]
+        ),
+        .testTarget(
+            name: "InteractionQueueTests",
+            dependencies: ["InteractionQueue"]
         ),
     ]
 )
