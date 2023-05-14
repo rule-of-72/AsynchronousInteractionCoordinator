@@ -16,14 +16,10 @@ let package = Package(
             name: "Async-Operations",
             targets: ["AsyncOperation"]
         ),
-        .library(
-            name: "Concurrent-KVO",
-            targets: ["ConcurrentKVO"]
-        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+        .package(name: "ConcurrentKVO", url: "https://github.com/rule-of-72/ConcurrentKVO", from: "1.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -34,15 +30,9 @@ let package = Package(
         ),
         .target(
             name: "AsyncOperation",
-            dependencies: ["ConcurrentKVO"]
-        ),
-        .target(
-            name: "ConcurrentKVO",
-            dependencies: []
-        ),
-        .testTarget(
-            name: "ConcurrentKVOTests",
-            dependencies: ["ConcurrentKVO"]
+            dependencies: [
+                .product(name: "ConcurrentKVO", package: "ConcurrentKVO"),
+            ]
         ),
     ]
 )
